@@ -42,11 +42,12 @@ Use the arrow keys (`↑`, `↓`, `←`, `→`) to move the player character aro
 
 If you would like to contribute to the development of this 2D RPG Game Engine, please:
 
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -am 'Add YourFeature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Create a new pull request.
+1. Read the `TODOs` documentation.
+2. Fork the repository.
+3. Create your feature branch (`git checkout -b feature/YourFeature`).
+4. Commit your changes (`git commit -am 'Add YourFeature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Create a new pull request.
 
 ## License
 
