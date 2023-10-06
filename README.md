@@ -1,2 +1,2 @@
-# 2d-rpg-game-template
-A 2D RPG game template using SDL and C++
+# 2d-rpg-game-engine
+A simple 2D RPG game engine using SDL and C++
