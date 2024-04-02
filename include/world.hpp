@@ -22,6 +22,7 @@ public:
   World(SDL_Renderer *renderer, std::string spritePath);
   void render(SDL_Renderer *renderer) override;
   void handleEvent(SDL_Event *event) override;
+  void update() override;
   ~World();
 };
 } // namespace nano

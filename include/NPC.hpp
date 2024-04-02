@@ -1,30 +1,31 @@
-#ifndef PLAYER_H_
-#define PLAYER_H_
+#ifndef NPC_H_
+#define NPC_H_
 
 #include "constants.hpp"
 #include "entity.hpp"
+#include <chrono>
+#include <random>
 #include <string>
+#include <thread>
 
 namespace nano {
-class Player : public IEntity {
+class NPC : public IEntity {
 private:
   int x, y;
-  int speed;
+  const int max_speed = 10;
   SDL_Texture *texture;
   std::string name;
   std::string spritePath;
+  std::random_device rd;
+  Uint32 lastMoveTime = 0;
 
 public:
-  Player(int x, int y, int speed, SDL_Renderer *renderer,
-         std::string spritePath);
-  void moveUp();
-  void moveDown();
-  void moveLeft();
-  void moveRight();
+  NPC(SDL_Renderer *renderer, std::string spritePath);
+  void move();
   void render(SDL_Renderer *renderer) override;
   void handleEvent(SDL_Event *event) override;
   void update() override;
-  ~Player();
+  ~NPC();
 };
 } // namespace nano
 

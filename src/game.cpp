@@ -40,7 +40,12 @@ void Game::clear() {
   SDL_RenderClear(renderer);
 }
 
-void Game::update() { SDL_RenderPresent(renderer); }
+void Game::update() {
+  SDL_RenderPresent(renderer);
+  for (auto &entity : entities) {
+    entity->update();
+  }
+}
 
 void Game::handleEvents() {
   while (SDL_PollEvent(&event)) {

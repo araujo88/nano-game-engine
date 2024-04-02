@@ -38,6 +38,8 @@ void World::handleEvent(SDL_Event *event) {
   // Handle any world-specific events (for now, do nothing)
 }
 
+void World::update() {}
+
 World::~World() {
   SDL_DestroyTexture(grassTexture);
   // Destroy other textures if added

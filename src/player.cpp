@@ -67,4 +67,6 @@ void Player::handleEvent(SDL_Event *event) {
   }
 }
 
+void Player::update() {}
+
 Player::~Player() { SDL_DestroyTexture(texture); }
