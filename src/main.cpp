@@ -2,10 +2,8 @@
 #include "../include/player.hpp"
 #include "../include/world.hpp"
 
-#define DEBUG(s) std::cout << s << std::endl;
-
 int main(void) {
-  nano::Game game = nano::Game("2D RPG Game Engine");
+  nano::Game game = nano::Game("Nano Game Engine");
 
   nano::World world = nano::World(game.getRenderer(), "sprites/grass.png");
 

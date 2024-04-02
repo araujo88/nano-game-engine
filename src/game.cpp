@@ -5,6 +5,8 @@ using namespace nano;
 Game::Game(std::string title) {
   title = title;
 
+  SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
+
   if (SDL_Init(SDL_INIT_VIDEO) != 0) {
     SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
     exit(1);

@@ -12,13 +12,33 @@ Player::Player(int x, int y, int speed, SDL_Renderer *renderer,
   }
 };
 
-void Player::moveUp() { y -= speed; }
+void Player::moveUp() {
+  SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Moving up");
+  if (y > 0) {
+    y -= speed;
+  }
+}
 
-void Player::moveDown() { y += speed; }
+void Player::moveDown() {
+  SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Moving down");
+  if (y < WINDOW_HEIGHT - TILE_SIZE) {
+    y += speed;
+  }
+}
 
-void Player::moveLeft() { x -= speed; }
+void Player::moveLeft() {
+  SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Moving left");
+  if (x > 0) {
+    x -= speed;
+  }
+}
 
-void Player::moveRight() { x += speed; }
+void Player::moveRight() {
+  SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Moving right");
+  if (x < WINDOW_WIDTH - TILE_SIZE) {
+    x += speed;
+  }
+}
 
 void Player::render(SDL_Renderer *renderer) {
   SDL_Rect playerRect = {x, y, TILE_SIZE, TILE_SIZE};
@@ -27,6 +47,9 @@ void Player::render(SDL_Renderer *renderer) {
 
 void Player::handleEvent(SDL_Event *event) {
   if (event->type == SDL_KEYDOWN) {
+    SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION, "Player position: %d(x) %d(y)",
+                 this->x, this->y);
+
     switch (event->key.keysym.sym) {
     case SDLK_UP:
       moveUp();
