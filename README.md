@@ -1,4 +1,4 @@
-# 2D Game Engine
+# Nano Game Engine
 
 A simple 2D game engine built using the SDL2 library. This engine provides basic functionalities like player movement, world rendering, and a modular entity system to ease the addition of new in-game objects and features.
 
