@@ -3,6 +3,7 @@
 using namespace nano;
 
 World::World(SDL_Renderer *renderer, std::string spritePath) {
+  this->name = "World";
   // Initialize the world tiles (for now, let's say everything is grass)
   for (int i = 0; i < WORLD_WIDTH; i++) {
     for (int j = 0; j < WORLD_HEIGHT; j++) {
