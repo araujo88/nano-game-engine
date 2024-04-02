@@ -40,6 +40,14 @@ void World::handleEvent(SDL_Event *event) {
 
 void World::update() {}
 
+bool World::isColliding(const SDL_Rect &box) { return false; }
+
+std::string World::getName() { return this->name; };
+
+SDL_Rect World::getBoundingBox() { return this->boundingBox; };
+
+void World::handleCollision() {}
+
 World::~World() {
   SDL_DestroyTexture(grassTexture);
   // Destroy other textures if added

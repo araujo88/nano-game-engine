@@ -2,7 +2,9 @@
 
 using namespace nano;
 
-NPC::NPC(SDL_Renderer *renderer, std::string spritePath) {
+NPC::NPC(std::string name, int x, int y, SDL_Renderer *renderer,
+         std::string spritePath)
+    : Character(name, x, y, renderer, spritePath) {
   std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
 
   std::uniform_int_distribution<> distribX(0, WINDOW_WIDTH);
@@ -10,12 +12,6 @@ NPC::NPC(SDL_Renderer *renderer, std::string spritePath) {
 
   this->x = distribX(gen);
   this->y = distribY(gen);
-
-  texture = IMG_LoadTexture(renderer, spritePath.c_str());
-  if (!texture) {
-    SDL_Log("Failed to load NPC texture: %s", IMG_GetError());
-    exit(1);
-  }
 };
 
 void NPC::move() {
@@ -33,11 +29,9 @@ void NPC::move() {
   if ((y < WINDOW_HEIGHT - TILE_SIZE) && (y > 0)) {
     y += speed_y;
   }
-}
 
-void NPC::render(SDL_Renderer *renderer) {
-  SDL_Rect NPCRect = {x, y, TILE_SIZE, TILE_SIZE};
-  SDL_RenderCopy(renderer, texture, NULL, &NPCRect);
+  this->boundingBox.x = x;
+  this->boundingBox.y = y;
 }
 
 void NPC::update() {
@@ -49,6 +43,16 @@ void NPC::update() {
   }
 }
 
-void NPC::handleEvent(SDL_Event *event) {}
+void NPC::render(SDL_Renderer *renderer) { Character::render(renderer); }
 
-NPC::~NPC() { SDL_DestroyTexture(texture); }
+bool NPC::isColliding(const SDL_Rect &box) {
+  return Character::isColliding(box);
+}
+
+std::string NPC::getName() { return Character::getName(); };
+
+SDL_Rect NPC::getBoundingBox() { return Character::getBoundingBox(); };
+
+void NPC::handleCollision() {}
+
+void NPC::handleEvent(SDL_Event *event) {}

@@ -8,13 +8,15 @@ int main(void) {
 
   nano::World world = nano::World(game.getRenderer(), "sprites/grass.png");
 
-  nano::Player player = nano::Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 10,
-                                     game.getRenderer(), "sprites/player.png");
+  nano::Player player =
+      nano::Player("Player", WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 32,
+                   game.getRenderer(), "sprites/wojak.png");
 
   std::vector<nano::NPC *> npcs;
 
   for (int i = 0; i < 10; ++i)
-    npcs.push_back(new nano::NPC(game.getRenderer(), "sprites/angry_sun.png"));
+    npcs.push_back(
+        new nano::NPC("NPC", 0, 0, game.getRenderer(), "sprites/chud.png"));
 
   game.addEntity(&world);
   game.addEntity(&player);

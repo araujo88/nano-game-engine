@@ -1,21 +1,18 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+#include "character.hpp"
 #include "constants.hpp"
-#include "entity.hpp"
 #include <string>
 
 namespace nano {
-class Player : public IEntity {
+class Player : public Character {
 private:
-  int x, y;
   int speed;
-  SDL_Texture *texture;
-  std::string name;
-  std::string spritePath;
 
 public:
-  Player(int x, int y, int speed, SDL_Renderer *renderer,
+  Player(std::string name, SDL_Renderer *renderer, std::string spritePath);
+  Player(std::string name, int x, int y, int speed, SDL_Renderer *renderer,
          std::string spritePath);
   void moveUp();
   void moveDown();
@@ -24,7 +21,11 @@ public:
   void render(SDL_Renderer *renderer) override;
   void handleEvent(SDL_Event *event) override;
   void update() override;
-  ~Player();
+  std::string getName() override;
+  SDL_Rect getBoundingBox() override;
+  void handleCollision() override;
+  bool isColliding(const SDL_Rect &box) override;
+  ~Player() override = default;
 };
 } // namespace nano
 

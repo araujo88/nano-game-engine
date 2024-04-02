@@ -23,6 +23,10 @@ public:
   void render(SDL_Renderer *renderer) override;
   void handleEvent(SDL_Event *event) override;
   void update() override;
+  std::string getName() override;
+  SDL_Rect getBoundingBox() override;
+  void handleCollision() override;
+  bool isColliding(const SDL_Rect &box) override;
   ~World();
 };
 } // namespace nano
