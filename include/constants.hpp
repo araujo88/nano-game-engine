@@ -1,0 +1,12 @@
+#ifndef CONSTANTS_H_
+#define CONSTANTS_H_
+
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
+#define TILE_SIZE 32
+#define TILES_X WINDOW_WIDTH / TILE_SIZE
+#define TILES_Y WINDOW_HEIGHT / TILE_SIZE
+#define WORLD_WIDTH 100
+#define WORLD_HEIGHT 100
+
+#endif
