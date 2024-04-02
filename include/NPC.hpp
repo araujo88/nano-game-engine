@@ -11,7 +11,7 @@
 namespace nano {
 class NPC : public Character {
 private:
-  const int max_speed = 10;
+  const int max_speed = 20;
   std::random_device rd;
   Uint32 lastMoveTime = 0;
 

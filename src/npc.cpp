@@ -23,13 +23,29 @@ void NPC::move() {
   int speed_x = distribX(gen);
   int speed_y = distribY(gen);
 
-  if ((x < WINDOW_WIDTH - TILE_SIZE) && (x > 0)) {
-    x += speed_x;
-  }
-  if ((y < WINDOW_HEIGHT - TILE_SIZE) && (y > 0)) {
-    y += speed_y;
+  // Calculate potential new positions
+  int new_x = x + speed_x;
+  int new_y = y + speed_y;
+
+  // Ensure the NPC doesn't move off the left or right side of the screen
+  if (new_x < 0) {
+    x = 0; // Prevent moving off the left edge
+  } else if (new_x > WINDOW_WIDTH - TILE_SIZE) { // Adjust for the NPC's size
+    x = WINDOW_WIDTH - TILE_SIZE; // Prevent moving off the right edge
+  } else {
+    x = new_x; // Update x if within bounds
   }
 
+  // Ensure the NPC doesn't move off the top or bottom of the screen
+  if (new_y < 0) {
+    y = 0; // Prevent moving off the top edge
+  } else if (new_y > WINDOW_HEIGHT - TILE_SIZE) { // Adjust for the NPC's size
+    y = WINDOW_HEIGHT - TILE_SIZE; // Prevent moving off the bottom edge
+  } else {
+    y = new_y; // Update y if within bounds
+  }
+
+  // Update the bounding box position
   this->boundingBox.x = x;
   this->boundingBox.y = y;
 }
