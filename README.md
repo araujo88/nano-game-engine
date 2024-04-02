@@ -27,11 +27,14 @@ A simple 2D Role-Playing Game (RPG) engine built using the SDL2 library. This en
    ```
 3. Navigate to the project directory and compile the game:
    ```bash
+   mkdir build
+   cd build
+   cmake ..
    make
    ```
 4. Run the compiled game:
    ```bash
-   ./game
+   ./game # in your build folder
    ```
 
 ### Usage
