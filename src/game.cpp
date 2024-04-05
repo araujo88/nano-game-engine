@@ -43,38 +43,28 @@ void Game::clear() {
 void Game::update() {
   SDL_RenderPresent(renderer);
 
-  IEntity *player = nullptr;
-  // Find the player entity, if it exists
-  for (auto &entity : entities) {
-    if (entity->getName() == "Player") {
-      player = entity; // Directly use the raw pointer since entities are raw
-                       // pointers
-      break;           // Stop the loop once the player is found
-    }
-  }
-
   // Update all entities
   for (auto &entity : entities) {
     entity->update();
-    SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION,
-                 "%s bounding box: h:%d,w:%d,x:%d,y:%d",
-                 entity->getName().c_str(), entity->getBoundingBox().h,
-                 entity->getBoundingBox().w, entity->getBoundingBox().x,
-                 entity->getBoundingBox().y);
   }
 
-  // If a player is found, then check for collisions with other entities
-  if (player) {
-    for (auto &character : entities) {
-      // Make sure not to check the player against itself
-      if (character != player &&
-          player->isColliding(character->getBoundingBox())) {
-        character->handleCollision();
-        SDL_LogDebug(SDL_LOG_CATEGORY_APPLICATION,
-                     "Collision detected between Player and another entity.");
+  // Check for collisions between all entities
+  for (auto &entity1 : entities) {
+    for (auto &entity2 : entities) {
+      // Avoid self-collision and redundant checks
+      if (entity1 != entity2 &&
+          entity1->isColliding(entity2->getBoundingBox())) {
+        entity1->handleCollision(entity2);
+        entity2->handleCollision(entity1);
       }
     }
   }
+
+  // Remove all entities marked for destruction
+  entities.erase(
+      std::remove_if(entities.begin(), entities.end(),
+                     [](IEntity *entity) { return entity->shouldDestroy(); }),
+      entities.end());
 }
 
 void Game::handleEvents() {

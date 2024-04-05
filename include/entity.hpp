@@ -13,6 +13,7 @@ class IEntity {
 protected:
   SDL_Rect boundingBox;
   std::string name;
+  bool toBeDestroyed = false;
 
 public:
   virtual void render(SDL_Renderer *renderer) = 0;
@@ -21,7 +22,9 @@ public:
   virtual bool isColliding(const SDL_Rect &box) = 0;
   virtual std::string getName() = 0;
   virtual SDL_Rect getBoundingBox() = 0;
-  virtual void handleCollision() = 0;
+  virtual void handleCollision(IEntity *entity) = 0;
+  bool shouldDestroy() const { return toBeDestroyed; }
+  void markForDestruction() { toBeDestroyed = true; }
 };
 } // namespace nano
 

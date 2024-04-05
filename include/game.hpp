@@ -6,8 +6,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <algorithm>
 #include <iostream>
 #include <list>
+#include <memory>
 
 namespace nano {
 class Game {

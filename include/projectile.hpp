@@ -1,22 +1,20 @@
-#ifndef NPC_H_
-#define NPC_H_
+#ifndef PROJECTILE_H_
+#define PROJECTILE_H_
 
 #include "character.hpp"
 #include "constants.hpp"
-#include <chrono>
-#include <random>
 #include <string>
 
 namespace nano {
-class NPC : public Character {
+class Projectile : public Character {
 private:
-  const int max_speed = 20;
-  std::random_device rd;
+  const int speed = 20;
+  Direction direction;
   Uint32 lastMoveTime = 0;
 
 public:
-  NPC(std::string name, int x, int y, SDL_Renderer *renderer,
-      std::string spritePath);
+  Projectile(std::string name, int x, int y, SDL_Renderer *renderer,
+             std::string spritePath, Direction direction);
   void move();
   void render(SDL_Renderer *renderer) override;
   void handleEvent(SDL_Event *event) override;
@@ -25,7 +23,8 @@ public:
   SDL_Rect getBoundingBox() override;
   void handleCollision(IEntity *entity) override;
   bool isColliding(const SDL_Rect &box) override;
-  ~NPC() override = default;
+  bool isOutOfBounds();
+  ~Projectile() override;
 };
 } // namespace nano
 

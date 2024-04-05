@@ -69,6 +69,6 @@ std::string NPC::getName() { return Character::getName(); };
 
 SDL_Rect NPC::getBoundingBox() { return Character::getBoundingBox(); };
 
-void NPC::handleCollision() {}
+void NPC::handleCollision(IEntity *entity) {}
 
 void NPC::handleEvent(SDL_Event *event) {}

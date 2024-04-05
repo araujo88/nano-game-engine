@@ -47,7 +47,7 @@ std::string World::getName() { return this->name; };
 
 SDL_Rect World::getBoundingBox() { return this->boundingBox; };
 
-void World::handleCollision() {}
+void World::handleCollision(IEntity *entity) {}
 
 World::~World() {
   SDL_DestroyTexture(grassTexture);

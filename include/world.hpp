@@ -25,7 +25,7 @@ public:
   void update() override;
   std::string getName() override;
   SDL_Rect getBoundingBox() override;
-  void handleCollision() override;
+  void handleCollision(IEntity *entity) override;
   bool isColliding(const SDL_Rect &box) override;
   ~World();
 };
